@@ -55,15 +55,15 @@ blt_bool CpuUserProgramStartHook(void)
    * board. to force the bootloader to stay active after reset, keep it pressed during
    * reset for at least BOOT_BACKDOOR_ENTRY_TIMEOUT_MS.
    */
-  if (LL_GPIO_IsInputPinSet(GPIOC, LL_GPIO_PIN_13) == 0)
-  {
-    /* pushbutton pressed, so do not start the user program and keep the
-     * bootloader active instead.
-     */
-    return BLT_FALSE;
-  }
-  /* clean up the LED driver */
-  LedBlinkExit();
+//  if (LL_GPIO_IsInputPinSet(GPIOC, LL_GPIO_PIN_13) == 0)
+//  {
+//    /* pushbutton pressed, so do not start the user program and keep the
+//     * bootloader active instead.
+//     */
+//    return BLT_FALSE;
+//  }
+//  /* clean up the LED driver */
+//  LedBlinkExit();
   /*  okay to start the user program.*/
   return BLT_TRUE;
 } /*** end of CpuUserProgramStartHook ***/
