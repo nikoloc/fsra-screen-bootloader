@@ -22,7 +22,11 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+App \
 Core/Src \
 Core/Startup \
 Drivers/STM32F4xx_HAL_Driver/Src \
+Loader/ARMCM4_STM32F4/GCC \
+Loader/ARMCM4_STM32F4 \
+Loader \
 

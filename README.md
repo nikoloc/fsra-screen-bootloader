@@ -8,3 +8,15 @@ u fajlu `App/fsra_config.h` nisam menjao nista u odnosu na boilerplate iz dokume
 
 u linker skripti sam stavio 16K za duzinu flash memorije. u primeru `https://gitlab.com/roadarrow/fsra_2025_stm32l431cctx_bootloader/-/blob/main/FSRA_2025_STM32L431CCTX_BOOT/STM32L431CCTX_FLASH.ld?ref_type=heads#L50` stoji 10K, mada u dokumentaciji pise da bi trebalo da bude
 umnozak 16K. mozda treba proveriti.
+
+fali mi `stm32f4xx_ll_usart.h`. nasao sam da on postoji u demo projektru u `Drivers/` folderu, dok kod mene postoji svi ostali osim tog.
+
+dodao sam ga rucno.
+
+fali mi definicija `tFlashSector` u `flash_layout.c`. nasao sam je u `Loader/ARMCM4_STM32F4/flash.c` pa sam je prebacio u `flash.h`
+header i include-ovao ga u `flash_layout.c`.
+
+malopre sam zaboravio da stavim RCC na LL umesto HAL. sad jesam i vise se ne kompajlira, jer u Loader/* stvari pozivaju HAL_*() funkcije.
+vratio sam na HAL, cini mi se da tako radi i dosadasnje napisani bootloader-i.
+
+vezano za usart problem odozgo, u `App/blt_conf.h` sam promenio `BOOT_COM_MBRTU_ENABLE` na 0, tako da mi to vise ne treba.

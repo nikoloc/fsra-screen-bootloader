@@ -26,6 +26,8 @@
 * \endinternal
 ****************************************************************************************/
 
+#include "flash.h"
+
 /** \brief   Array wit the layout of the flash memory.
  *  \details Also controls what part of the flash memory is reserved for the bootloader.
  *           If the bootloader size changes, the reserved sectors for the bootloader
