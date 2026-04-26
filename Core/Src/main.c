@@ -49,7 +49,6 @@ CAN_HandleTypeDef hcan1;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_CAN1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -88,7 +87,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_CAN1_Init();
   /* USER CODE BEGIN 2 */
   AppInit();
   /* USER CODE END 2 */
@@ -150,7 +148,7 @@ void SystemClock_Config(void)
   * @param None
   * @retval None
   */
-static void MX_CAN1_Init(void)
+void MX_CAN1_Init(void)
 {
 
   /* USER CODE BEGIN CAN1_Init 0 */

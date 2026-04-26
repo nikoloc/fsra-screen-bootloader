@@ -46,9 +46,9 @@
  * de-initialize application specific parts, for example to stop blinking an LED, etc.
  */
 /** \brief Frequency of the external crystal oscillator. */
-#define BOOT_CPU_XTAL_SPEED_KHZ          (8000)
+#define BOOT_CPU_XTAL_SPEED_KHZ          (16000)
 /** \brief Desired system speed. */
-#define BOOT_CPU_SYSTEM_SPEED_KHZ        (180000)
+#define BOOT_CPU_SYSTEM_SPEED_KHZ        (16000)
 /** \brief Motorola or Intel style byte ordering. */
 #define BOOT_CPU_BYTE_ORDER_MOTOROLA     (0)
 /** \brief Enable/disable hook function call right before user program start. */
@@ -149,7 +149,7 @@
 
 // disabling this makes the ide not pick up some `flash_layout.c` fragment file and try
 // to compile it. seems not needed anyway
-#define BOOT_FLASH_CUSTOM_LAYOUT_ENABLE (0)
+#define BOOT_FLASH_CUSTOM_LAYOUT_ENABLE (1)
 /** \brief This microcontroller has a larger vector table then the default STM32F4xx
  *         project as assumed in the bootloader's core. This means the user program has
  *         a different checksum location, because this one is added at the end of the
@@ -157,7 +157,7 @@
  */
 
 // this is commented in order for it to use the default value
-// #define BOOT_FLASH_VECTOR_TABLE_CS_OFFSET (0x1C4)
+#define BOOT_FLASH_VECTOR_TABLE_CS_OFFSET (0x1B4)
 
 
 /****************************************************************************************
