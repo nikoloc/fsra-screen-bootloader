@@ -87,6 +87,22 @@
 /** \brief The 8-bit node identifier of this node. Should be between 1 and 247. */
 #define BOOT_COM_MBRTU_NODE_ID           (1)
 
+/** \brief Enable/disable CAN transport layer. */
+#define BOOT_COM_CAN_ENABLE             (1)
+/** \brief Configure the desired CAN baudrate. */
+#define BOOT_COM_CAN_BAUDRATE           (500000)
+/** \brief Configure CAN message ID target->host. */
+#define BOOT_COM_CAN_TX_MSG_ID          (BLT_TX_ID | 0x80000000) // extended mask added
+/** \brief Configure number of bytes in the target->host CAN message. */
+#define BOOT_COM_CAN_TX_MAX_DATA        (8)
+/** \brief Configure CAN message ID host->target. */
+#define BOOT_COM_CAN_RX_MSG_ID          (BLT_RX_ID | 0x80000000) // extended mask added
+/** \brief Configure number of bytes in the host->target CAN message. */
+#define BOOT_COM_CAN_RX_MAX_DATA        (8)
+/** \brief Select the desired CAN peripheral as a zero based index. */
+#define BOOT_COM_CAN_CHANNEL_INDEX      (0)
+
+
 
 /****************************************************************************************
 *   B A C K D O O R   E N T R Y   C O N F I G U R A T I O N
@@ -130,13 +146,18 @@
  *         in the bootloader's core has less flash memory reserved for the bootloader
  *         than is needed for this demo.
  */
-#define BOOT_FLASH_CUSTOM_LAYOUT_ENABLE (1)
+
+// disabling this makes the ide not pick up some `flash_layout.c` fragment file and try
+// to compile it. seems not needed anyway
+#define BOOT_FLASH_CUSTOM_LAYOUT_ENABLE (0)
 /** \brief This microcontroller has a larger vector table then the default STM32F4xx
  *         project as assumed in the bootloader's core. This means the user program has
  *         a different checksum location, because this one is added at the end of the
  *         user program's vector table.
  */
-#define BOOT_FLASH_VECTOR_TABLE_CS_OFFSET (0x1C4)
+
+// this is commented in order for it to use the default value
+// #define BOOT_FLASH_VECTOR_TABLE_CS_OFFSET (0x1C4)
 
 
 /****************************************************************************************

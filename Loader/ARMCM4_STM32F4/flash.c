@@ -31,7 +31,6 @@
 ****************************************************************************************/
 #include "boot.h"                                /* bootloader generic header          */
 #include "stm32f4xx.h"                           /* STM32 CPU and HAL header           */
-#include "flash.h"
 
 /****************************************************************************************
 * Macro definitions
@@ -47,6 +46,33 @@
 /** \brief End address of the bootloader programmable flash. */
 #define FLASH_END_ADDRESS               (flashLayout[FLASH_TOTAL_SECTORS-1].sector_start + \
                                          flashLayout[FLASH_TOTAL_SECTORS-1].sector_size - 1)
+
+
+/****************************************************************************************
+* Type definitions
+****************************************************************************************/
+/** \brief Flash sector descriptor type. */
+typedef struct
+{
+  blt_addr   sector_start;                       /**< sector start address             */
+  blt_int32u sector_size;                        /**< sector size in bytes             */
+  blt_int8u  sector_num;                         /**< sector number                    */
+} tFlashSector;
+
+/** \brief    Structure type for grouping flash block information.
+ *  \details  Programming is done per block of max FLASH_WRITE_BLOCK_SIZE. for this a
+ *            flash block manager is implemented in this driver. this flash block manager
+ *            depends on this flash block info structure. It holds the base address of
+ *            the flash block and the data that should be programmed into the flash
+ *            block. The .base_addr must be a multiple of FLASH_WRITE_BLOCK_SIZE.
+ */
+typedef struct
+{
+  blt_addr  base_addr;
+  blt_int8u data[FLASH_WRITE_BLOCK_SIZE];
+} tFlashBlockInfo;
+
+
 /** \brief Offset into the user program's vector table where the checksum is located. 
  *         For this target it is set to the end of the vector table. Note that the 
  *         value can be overriden in blt_conf.h, because the size of the vector table
