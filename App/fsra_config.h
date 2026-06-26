@@ -19,7 +19,7 @@
 #define BOARD_BMS_MASTER   0x9
 #define BOARD_SCREEN       0xA
 
-#define BOARD_TYPE BOARD_TYPE
+#define BOARD_TYPE BOARD_SCREEN
 
 #define BLT_TX_ID 0xF10
 #define BLT_RX_ID 0xF20
